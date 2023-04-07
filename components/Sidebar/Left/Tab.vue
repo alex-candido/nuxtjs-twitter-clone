@@ -18,7 +18,7 @@ const textClasses = computed(() =>
     to="#"
     class="flex items-center p-3 text-black rounded-full w-min hover:bg-gray-200 dark:hover:bg-dim-200 dark:text-white"
   >
-    <div class="w-6 h-6 text-dark" :class="defaultTransition">
+    <div class="w-6 h-6 text-center text-dark" :class="defaultTransition">
       <slot name="icon" />
     </div>
 
