@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-let darkMode = ref(false);
+let darkMode = ref(true);
 
 </script>
 
@@ -19,17 +19,15 @@ let darkMode = ref(false);
 
         <!-- Main Content -->
 
-        <main class="col-span-12 bg-red-500 md:col-span-8 xl:col-span-6">
+        <main class="col-span-12 bg-sky-500 md:col-span-8 xl:col-span-6">
           <h1>main</h1>
         </main>
 
         <!-- Right Sidebar -->
 
-        <div class="col-span-12 bg-blue-500 md:block xl:col-span-4 md:col-span-3">
+        <div class="hidden col-span-12 md:block xl:col-span-4 md:col-span-3">
           <div class="sticky top-0">
-            <h1>
-              right sidebar
-            </h1>
+            <SidebarRight />
           </div>
         </div>
 
