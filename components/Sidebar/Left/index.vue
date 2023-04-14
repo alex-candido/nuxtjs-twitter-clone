@@ -71,10 +71,7 @@ const { defaultTransition } = useTailwindConfig();
 
       <SidebarLeftTab active>
         <template v-slot:icon>
-          <div>
-            <font-awesome-icon icon="fa-regular fa-circle" size="lg"/>
-            <font-awesome-icon icon="fa-solid fa-ellipsis" class="relative bottom-6 right-0.4" size="xs"/>
-          </div>
+          <font-awesome-icon icon="fa-solid fa-ellipsis" class="text-xl"/>
         </template>
         <template v-slot:name> More </template>
       </SidebarLeftTab>
