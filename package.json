@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.6.5",
-    "nuxt": "^3.3.2"
+    "nuxt": "^3.3.2",
+    "prisma": "^4.12.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
