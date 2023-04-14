@@ -22,7 +22,7 @@ const textClasses = computed(() =>
       <slot name="icon" />
     </div>
 
-    <div class=" ml-4 text-xl xl:block" :class="textClasses">
+    <div class="hidden ml-4 text-xl xl:block" :class="textClasses">
       <slot name="name" />
     </div>
   </nuxt-link>

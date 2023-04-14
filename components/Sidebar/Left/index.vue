@@ -78,7 +78,6 @@ const { defaultTransition } = useTailwindConfig();
         </template>
         <template v-slot:name> More </template>
       </SidebarLeftTab>
-
     </div>
   </div>
 </template>
