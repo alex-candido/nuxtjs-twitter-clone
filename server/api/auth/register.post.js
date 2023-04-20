@@ -1,6 +1,7 @@
 import { createUser } from "~/server/db";
 
 export default defineEventHandler(async (event) => {
+    //@ts-ignore
     const body = await useBody(event)
 
     const { username, email, password, repeatPassword, name } = body
@@ -24,6 +25,6 @@ export default defineEventHandler(async (event) => {
     const user = await createUser(userData)
 
     return {
-        body: body 
+        body: userTransformer(user) 
     }
 });
