@@ -5,7 +5,7 @@
 
 <template>
     <div>
-        <MainSection title="Home" :loading="loading">
+        <MainSection title="Home" :loading="true">
             this is our home page
         </MainSection>
     </div>

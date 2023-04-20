@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, EllipsisHorizontalCircleIcon } from "@heroicons/vue/24/outline"
+import { HomeIcon } from "@heroicons/vue/24/solid"
 const { defaultTransition } = useTailwindConfig();
 
 </script>
@@ -22,59 +24,56 @@ const { defaultTransition } = useTailwindConfig();
     <div class="mt-2 space-y-3">
       <SidebarLeftTab active>
         <template v-slot:icon>
-          <font-awesome-icon icon="fa-solid fa-house" />
+          <HomeIcon />
         </template>
         <template v-slot:name> Home </template>
       </SidebarLeftTab>
 
       <SidebarLeftTab active>
         <template v-slot:icon>
-          <font-awesome-icon icon="fa-solid fa-hashtag" />
+          <HashtagIcon />
         </template>
         <template v-slot:name> Explore </template>
       </SidebarLeftTab>
 
       <SidebarLeftTab active>
         <template v-slot:icon>
-          <font-awesome-icon icon="fa-solid fa-bell" />
+          <BellIcon />
         </template>
         <template v-slot:name> Notifications </template>
       </SidebarLeftTab>
 
       <SidebarLeftTab active>
         <template v-slot:icon>
-          <font-awesome-icon icon="fa-solid fa-inbox" />
+          <InboxIcon />
         </template>
         <template v-slot:name> Messages </template>
       </SidebarLeftTab>
 
       <SidebarLeftTab active>
         <template v-slot:icon>
-          <font-awesome-icon icon="fa-solid fa-bookmark" />
+          <BookmarkIcon />
         </template>
         <template v-slot:name> Bookmarks </template>
       </SidebarLeftTab>
 
       <SidebarLeftTab active>
         <template v-slot:icon>
-          <font-awesome-icon icon="fa-solid fa-file-lines" />
+          <DocumentTextIcon />
         </template>
         <template v-slot:name> Lists </template>
       </SidebarLeftTab>
 
       <SidebarLeftTab active>
         <template v-slot:icon>
-          <font-awesome-icon icon="fa-solid fa-user" />
+          <UserIcon />
         </template>
         <template v-slot:name> Profile </template>
       </SidebarLeftTab>
 
       <SidebarLeftTab active>
         <template v-slot:icon>
-          <div>
-            <font-awesome-icon icon="fa-regular fa-circle" size="lg"/>
-            <font-awesome-icon icon="fa-solid fa-ellipsis" class="relative bottom-6 right-0.4" size="xs"/>
-          </div>
+          <EllipsisHorizontalCircleIcon />
         </template>
         <template v-slot:name> More </template>
       </SidebarLeftTab>
