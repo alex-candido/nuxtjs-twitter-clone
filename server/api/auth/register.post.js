@@ -1,3 +1,5 @@
+import { createUser } from "~/server/db";
+
 export default defineEventHandler(async (event) => {
     const body = await useBody(event)
 
@@ -7,7 +9,21 @@ export default defineEventHandler(async (event) => {
         return sendError(event, createError({ statusCode: 400, statusMessage: 'Invalid params' }))
     }
 
+    if ( password !== repeatPassword ) {
+        return sendError(event, createError({ statusCode: 400, statusMessage: 'Passwords do not match'}))
+    }
+
+    const userData = {
+        username,
+        email,
+        password,
+        name,
+        profileImage: 'https://picsum.photos/200/200'
+    }
+
+    const user = await createUser(userData)
+
     return {
-        body: body
+        body: body 
     }
 });
