@@ -1,3 +1,10 @@
+import { getUserByUsername } from "../../db/users.js"
+import bcrypt from "bcrypt"
+import { generateTokens, sendRefreshToken } from "../../utils/jwt.js"
+import { userTransformer } from "~~/server/transformers/user.js"
+import { createRefreshToken } from "../../db/refreshTokens.js"
+import { sendError } from "h3"
+
 export default defineEventHandler(async (event) => {
     const body = await useBody(event)
 
@@ -11,7 +18,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // Is the user registered 
-    const user = getUserByUsername(username)
+    const user = await getUserByUsername(username)
 
     if (!user) {
         return sendError(event, createError({
@@ -21,10 +28,15 @@ export default defineEventHandler(async (event) => {
     }
 
     // Compare passwords
+    const doesThePasswordMatch = await bcrypt.compare(password, user.password)
 
     // Generate Tokens
+    // Access token
+    // Refresh token
+    const { accessToken, refreshToken  } = generateTokens()
 
     return {
-        user: user
+        user: user,
+        doesThePasswordMatch
     }
 })
