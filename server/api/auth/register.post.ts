@@ -1,6 +1,6 @@
-import { sendError } from "h3"
-import { createUser } from "../../db/users.js"
-import { userTransformer } from "~~/server/transformers/user.js"
+import { sendError } from "h3";
+import { userTransformer } from "~~/server/transformers/user.js";
+import { createUser } from "../../db/users.js";
 
 export default defineEventHandler(async (event) => {
     //@ts-ignore
