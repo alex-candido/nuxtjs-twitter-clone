@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken"
 
-const generateAccessToken = (user) => {
+const generateAccessToken = (user: any) => {
     const config = useRuntimeConfig()
 
     return jwt.sign({ userId: user.id }, config.jwtAccessSecret, {
@@ -8,7 +8,7 @@ const generateAccessToken = (user) => {
     })
 }
 
-const generateRefreshToken = (user) => {
+const generateRefreshToken = (user: any) => {
     const config = useRuntimeConfig()
 
     return jwt.sign({ userId: user.id }, config.jwtRefreshSecret, {
@@ -16,7 +16,7 @@ const generateRefreshToken = (user) => {
     })
 }
 
-export const generateTokens = (user) => {
+export const generateTokens = (user: any) => {
     const accessToken = generateAccessToken(user)
     const refreshToken = generateRefreshToken(user)
 
@@ -24,4 +24,11 @@ export const generateTokens = (user) => {
         accessToken: accessToken,
         refreshToken: refreshToken
     }
+}
+
+export const sendRefreshToken = (event: any, token: any) => {
+    setCookie(event.res, "refresh_token", token, {
+        httpOnly: true,
+        sameSite: true
+    })
 }

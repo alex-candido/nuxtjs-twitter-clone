@@ -21,10 +21,10 @@
             <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100">{{ props.title }}</h2>
         </div>
 
-        <div v-if="props.loading" class="flex items-center justify-center p-4 border-b">
+        <!-- <div v-if="props.loading" class="flex items-center justify-center p-4 border-b">
             <UISpinner />
-        </div>
-        <div v-else>
+        </div> -->
+        <div>
             <slot></slot>
         </div>
 
