@@ -6,6 +6,7 @@ import { getUserByUsername } from "../../db/users.js"
 import { generateTokens, sendRefreshToken } from "../../utils/jwt.js"
 
 export default defineEventHandler(async (event) => {
+    
     //@ts-ignore
     const body = await useBody(event);
 

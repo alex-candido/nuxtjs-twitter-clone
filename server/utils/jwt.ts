@@ -1,6 +1,10 @@
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
-const generateAccessToken = (user: any) => {
+interface userProps  {
+    id: string,
+}
+
+const generateAccessToken = (user: userProps) => {
     const config = useRuntimeConfig()
 
     return jwt.sign({ userId: user.id }, config.jwtAccessSecret, {
@@ -8,7 +12,7 @@ const generateAccessToken = (user: any) => {
     })
 }
 
-const generateRefreshToken = (user: any) => {
+const generateRefreshToken = (user: userProps) => {
     const config = useRuntimeConfig()
 
     return jwt.sign({ userId: user.id }, config.jwtRefreshSecret, {
@@ -16,7 +20,7 @@ const generateRefreshToken = (user: any) => {
     })
 }
 
-export const generateTokens = (user: any) => {
+export const generateTokens = (user: userProps) => {
     const accessToken = generateAccessToken(user)
     const refreshToken = generateRefreshToken(user)
 
@@ -26,7 +30,7 @@ export const generateTokens = (user: any) => {
     }
 }
 
-export const sendRefreshToken = (event: any, token: any) => {
+export const sendRefreshToken = (event: any, token: string) => {
     setCookie(event.res, "refresh_token", token, {
         httpOnly: true,
         sameSite: true
