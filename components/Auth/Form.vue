@@ -1,4 +1,27 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const data = reactive({
+  username: "",
+  password: "",
+  loading: false,
+});
+
+async function handleLogin() {
+  try {
+    const currentLogin = {
+      username: data.username,
+      password: data.password,
+    };
+
+    console.log(currentLogin);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const isButtonDisabled = computed(() => {
+  return !data.username || !data.password || data.loading;
+});
+</script>
 
 <template>
   <div class="w-full">
@@ -11,6 +34,23 @@
       </div>
     </div>
 
-    <div class="pt-5 space-y-6">Login</div>
+    <div class="pt-5 space-y-6">
+      <UIInput
+        v-model="data.username"
+        label="Username"
+        placeholder="@username"
+      />
+
+      <UIInput
+        v-model="data.password"
+        label="Password"
+        placeholder="********"
+        type="password"
+      />
+
+      <UIButton @click="handleLogin" liquid :disabled="isButtonDisabled">
+        Login
+      </UIButton>
+    </div>
   </div>
 </template>
