@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const data = reactive({
   username: "",
   password: "",
@@ -6,16 +7,20 @@ const data = reactive({
 });
 
 async function handleLogin() {
-  try {
-    const currentLogin = {
-      username: data.username,
-      password: data.password,
-    };
+    const { login } = useAuth()
 
-    console.log(currentLogin);
-  } catch (error) {
-    console.log(error);
-  }
+    data.loading = true
+    try {
+        await login({
+            username: data.username,
+            password: data.password
+        })
+    } catch (error) {
+        console.log(error)
+    } finally {
+        data.loading = false
+    }
+
 }
 
 const isButtonDisabled = computed(() => {
