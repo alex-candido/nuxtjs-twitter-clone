@@ -23,7 +23,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@heroicons/vue": "^2.0.17",
-    "@prisma/client": "4.12.0",
+    "@prisma/client": "^4.14.1",
     "@tailwindcss/forms": "^0.5.3",
     "@vue-hero-icons/outline": "^1.7.2",
     "@vue-hero-icons/solid": "^1.7.2",

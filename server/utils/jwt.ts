@@ -31,7 +31,7 @@ export const generateTokens = (user: userProps) => {
 }
 
 export const sendRefreshToken = (event: any, token: string) => {
-    setCookie(event.res, "refresh_token", token, {
+    setCookie(event, "refresh_token", token, {
         httpOnly: true,
         sameSite: true
     })

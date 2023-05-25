@@ -1,10 +1,10 @@
 import { sendError } from "h3";
-import { userTransformer } from "~/server/transformers/user.js";
-import { createUser } from "../../db/users.js";
+import { createUser } from "~/server/db/users";
+import { userTransformer } from "~/server/transformers/user";
 
 export default defineEventHandler(async (event) => {
     //@ts-ignore
-    const body = await useBody(event)
+    const body = await readBody(event);
 
     const { username, email, password, repeatPassword, name } = body
 

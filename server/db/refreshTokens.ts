@@ -1,8 +1,8 @@
 import { prisma } from ".";
 
 interface refreshTokenProps {
-    token: string;
-    userId: string;
+  token: string;
+  userId: string;
 }
 
 export const createRefreshToken = (refreshToken: refreshTokenProps) => {
