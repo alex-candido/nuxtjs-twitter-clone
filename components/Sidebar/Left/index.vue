@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, EllipsisHorizontalCircleIcon } from "@heroicons/vue/24/outline"
-import { HomeIcon } from "@heroicons/vue/24/solid"
+import { BellIcon, BookmarkIcon, DocumentTextIcon, EllipsisHorizontalCircleIcon, HashtagIcon, InboxIcon, UserIcon } from "@heroicons/vue/24/outline";
+import { HomeIcon } from "@heroicons/vue/24/solid";
 const { defaultTransition } = useTailwindConfig();
 
 </script>
