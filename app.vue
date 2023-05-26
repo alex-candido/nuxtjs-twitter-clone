@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 let darkMode = ref(false);
+const { useAuthUser } = useAuth()
+const user = useAuthUser()
+
 </script>
 
 <template>
