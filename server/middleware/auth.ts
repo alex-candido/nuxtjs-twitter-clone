@@ -1,28 +1,36 @@
-import URLPattern from 'url-pattern';
+import URLPattern from "url-pattern";
 
-import { H3Event, sendError } from "h3";
+import { sendError } from "h3";
 import { getUserById } from "../db/users";
 import { decodeAccessToken } from "../utils/jwt.js";
 
-export default defineEventHandler(async (event: H3Event) => {
+export default defineEventHandler(async (event) => {
   const endpoints = [
     '/api/auth/user',
-    '/api/user/tweets',
-    '/api/tweets',
-    '/api/tweets/:id'
   ]
 
-  const { request, headers, context } = await readBody(event);
+  const getRequest = getRequestURL(event)
 
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new URLPattern(endpoint);
 
-    return pattern.match(request.url)
+    return pattern.match(getRequest.pathname)
   })
 
   if (!isHandledByThisMiddleware) return;
 
-  const authorizationToken = headers['authorization']?.split(' ')[1];
+  const cookie = event.node.req.headers.cookie
+
+  if (!cookie) {
+    return sendError(event, createError({
+      statusCode: 401,
+      statusMessage: 'Unauthorized'
+    }))
+  }
+
+
+
+  const authorizationToken = cookie.substring(cookie.indexOf("=") + 1)
 
   if (!authorizationToken) {
     return sendError(event, createError({
@@ -50,10 +58,8 @@ export default defineEventHandler(async (event: H3Event) => {
       }))
     }
 
-    context.auth = { user }
+    event.context.auth = { user }
   } catch (error) {
-    if (error instanceof Error) {
-      return sendError(event, createError({ statusCode: 404, statusMessage: error.message }));
-    }
+		return sendError(event, createError({ statusCode: 404, statusMessage: 'Refresh token is invalid' }));
 	}
 })
