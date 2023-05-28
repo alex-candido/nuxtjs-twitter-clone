@@ -49,9 +49,8 @@ const useAuth = () => {
       try {
         const request = await useFetch('/api/auth/refresh', { method: 'GET' })
 
-        console.log(request.data.value?.access_token)
-
-        // setToken(request.data.value?.access_token);
+        setToken(request.data.value?.access_token);
+        resolve(true)
       } catch (error) {
         console.log(error)
         reject(error)
@@ -78,7 +77,6 @@ const useAuth = () => {
     useAuthUser,
     useAuthToken,
     initAuth,
-
   }
 }
 

@@ -38,6 +38,7 @@
     "bcrypt": "^5.1.0",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.0",
-    "jwt-decode": "^3.1.2"
+    "jwt-decode": "^3.1.2",
+    "url-pattern": "^1.0.3"
   }
 }

@@ -7,11 +7,14 @@ const data = reactive({
 });
 
 async function handleLogin() {
-    const { refreshToken } = useAuth()
+    const { login } = useAuth()
 
     data.loading = true
     try {
-        await refreshToken()
+        await login({
+            username: data.username,
+            password: data.password
+        })
     } catch (error) {
         console.log(error)
     } finally {

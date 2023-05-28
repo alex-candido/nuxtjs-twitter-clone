@@ -1,4 +1,5 @@
 import { H3Event, sendError } from "h3";
+
 import { getRefreshTokenByToken } from "../../db/refreshTokens.js";
 import { getUserById } from "../../db/users.js";
 import { decodeRefreshToken, generateTokens } from "../../utils/jwt.js";
@@ -9,7 +10,6 @@ export default defineEventHandler(async (event: H3Event) => {
   if (method !== "GET") {
     return sendError(event, createError({ statusCode: 405, statusMessage: 'Method Not Allowed' }))
   }
-
 
   const refreshToken = getCookie(event, 'refresh_token')
 

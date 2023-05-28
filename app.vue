@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-let darkMode = ref(false);
-const { useAuthUser } = useAuth()
-const user = useAuthUser()
+  let darkMode = ref(false);
+  const { useAuthUser, initAuth } = useAuth()
+  const user = useAuthUser()
+
+  onBeforeMount(async () => await initAuth());
 
 </script>
 

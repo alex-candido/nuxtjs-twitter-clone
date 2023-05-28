@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
-
 import { H3Event, sendError } from "h3";
+
 import { createRefreshToken } from "~/server/db/refreshTokens.js";
 import { userTransformer } from "~/server/transformers/user.js";
 import { getUserByUsername } from "../../db/users.js";
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event: H3Event) => {
     return sendError(event, createError({ statusCode: 405, statusMessage: 'Method Not Allowed' }))
   }
 
-  try {
+
     const body = await readBody(event);
 
     const { username, password } = body;
@@ -51,6 +51,8 @@ export default defineEventHandler(async (event: H3Event) => {
         }),
       );
     }
+
+    try {
 
     const { accessToken, refreshToken } = await generateTokens(user);
 

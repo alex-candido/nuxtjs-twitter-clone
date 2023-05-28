@@ -46,6 +46,25 @@ export const decodeRefreshToken = async (token: string): Promise<User | undefine
     }
 }
 
+export const decodeAccessToken = async (token: string): Promise<User | undefined> => {
+  const config = useRuntimeConfig()
+
+  try {
+    const decoded = ( await jwt.verify(
+      token,
+      config.jwtRefreshSecret
+    )) as User
+
+    return {
+      userId: decoded.userId,
+      iat: decoded.iat,
+      exp: decoded.exp
+    }
+  } catch (error) {
+		console.error(error);
+	}
+}
+
 export const generateTokens = (user: userProps ) => {
     const accessToken = generateAccessToken(user)
     const refreshToken = generateRefreshToken(user)
