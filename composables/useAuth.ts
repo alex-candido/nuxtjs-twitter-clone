@@ -43,10 +43,42 @@ const useAuth = () => {
     })
   }
 
+  const refreshToken = () => {
+    return new Promise(async (resolve, reject) => {
+
+      try {
+        const request = await useFetch('/api/auth/refresh', { method: 'GET' })
+
+        console.log(request.data.value?.access_token)
+
+        // setToken(request.data.value?.access_token);
+      } catch (error) {
+        console.log(error)
+        reject(error)
+      }
+    })
+  }
+
+  const initAuth = () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await refreshToken()
+
+        resolve(true)
+      } catch (error) {
+        console.log(error)
+        reject(error)
+      }
+    })
+  }
+
   return {
     login,
+    refreshToken,
     useAuthUser,
     useAuthToken,
+    initAuth,
+
   }
 }
 
