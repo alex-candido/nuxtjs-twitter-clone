@@ -28,8 +28,6 @@ export default defineEventHandler(async (event) => {
     }))
   }
 
-
-
   const authorizationToken = cookie.substring(cookie.indexOf("=") + 1)
 
   if (!authorizationToken) {

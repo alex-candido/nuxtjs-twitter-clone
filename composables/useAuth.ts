@@ -65,7 +65,7 @@ const useAuth = () => {
         const request = await useFetch('/api/auth/user', { method: 'GET' })
 
         console.log(request.data.value?.user)
-        // setUser(request.data.value?.user);
+        setUser(request.data.value?.user);
         resolve(true)
       } catch (error) {
         console.log(error)
