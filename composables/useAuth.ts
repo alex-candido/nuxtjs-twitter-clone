@@ -100,10 +100,10 @@ const useAuth = () => {
 
   return {
     login,
-    refreshToken,
     useAuthUser,
     useAuthToken,
     initAuth,
+    useAuthLoading,
   }
 }
 
