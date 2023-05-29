@@ -10,6 +10,7 @@ interface userProps {
 const useAuth = () => {
     const useAuthToken = () => useState('auth_token')
     const useAuthUser = () => useState('auth_user')
+    const useAuthLoading = () => useState('auth_loading', () => true)
 
     const setToken = ( newToken: string | undefined ) => {
       const authToken = useAuthToken()
@@ -19,6 +20,11 @@ const useAuth = () => {
     const setUser = ( newUser: userProps | undefined ) => {
       const authUser = useAuthUser()
       authUser.value = newUser;
+    }
+
+    const setIsAuthLoading = (value: boolean) => {
+        const authLoading = useAuthLoading()
+        authLoading.value = value
     }
 
   const login = ({ username, password }: { username: string, password: string }) => {
@@ -65,6 +71,7 @@ const useAuth = () => {
         const request = await useFetch('/api/auth/user', { method: 'GET' })
 
         console.log(request.data.value?.user)
+
         setUser(request.data.value?.user);
         resolve(true)
       } catch (error) {
@@ -76,6 +83,7 @@ const useAuth = () => {
 
   const initAuth = () => {
     return new Promise(async (resolve, reject) => {
+      setIsAuthLoading(true)
       try {
         await refreshToken()
         await getUser()
@@ -84,6 +92,8 @@ const useAuth = () => {
       } catch (error) {
         console.log(error)
         reject(error)
+      } finally {
+        setIsAuthLoading(false)
       }
     })
   }
