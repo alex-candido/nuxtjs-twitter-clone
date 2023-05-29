@@ -5,8 +5,11 @@
 
 <template>
     <div>
-        <MainSection title="Home" :loading="true">
-            this is our home page
+        <MainSection title="Home" :loading="loading">
+          <Head>
+              <Title>Home / Twitter</Title>
+          </Head>
+
         </MainSection>
     </div>
 </template>

@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode";
+
 interface userProps {
   id: string;
   name: string | null;
@@ -8,7 +10,7 @@ interface userProps {
 }
 
 const useAuth = () => {
-    const useAuthToken = () => useState('auth_token')
+    const useAuthToken = () => useState<string | undefined>('auth_token')
     const useAuthUser = () => useState('auth_user')
     const useAuthLoading = () => useState('auth_loading', () => true)
 
@@ -81,12 +83,31 @@ const useAuth = () => {
     })
   }
 
+  const reRefreshAccessToken = () => {
+    const authToken = useAuthToken()
+
+    if (!authToken.value) {
+        return
+    }
+
+    const jwt = jwt_decode<any>(authToken.value)
+
+    const newRefreshTime = jwt.exp - 60000
+
+    setTimeout(async () => {
+      await refreshToken()
+      reRefreshAccessToken()
+    }, newRefreshTime);
+  }
+
   const initAuth = () => {
     return new Promise(async (resolve, reject) => {
       setIsAuthLoading(true)
       try {
         await refreshToken()
         await getUser()
+
+        reRefreshAccessToken()
 
         resolve(true)
       } catch (error) {
