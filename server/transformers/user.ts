@@ -1,9 +1,8 @@
 interface userTransformerProps {
     id: string;
-    email: string;
     name: string | null;
+    email: string;
     username: string;
-    password: string;
     profileImage: string | null;
 }
 
