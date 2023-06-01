@@ -1,6 +1,10 @@
 import { prisma } from ".";
 
-export const createTweet = (tweetData: any) => {
+interface tweetDataProps {
+  text: any;
+  authorId: any;
+}
+export const createTweet = (tweetData: tweetDataProps) => {
   return prisma.tweet.create({
     data: tweetData
   })
