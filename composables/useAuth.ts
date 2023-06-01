@@ -125,6 +125,7 @@ const useAuth = () => {
     useAuthToken,
     initAuth,
     useAuthLoading,
+    refreshToken
   }
 }
 

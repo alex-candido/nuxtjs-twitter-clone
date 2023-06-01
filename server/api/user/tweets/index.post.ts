@@ -18,9 +18,11 @@ export default defineEventHandler(async (event) => {
 
   // const { fields, files } = response
 
+  const userId = event.context?.auth.userId
+
   try {
     return {
-      hello: response
+      hello: userId
     }
   } catch (error) {
     return sendError(event, createError({ statusCode: 500, statusMessage: 'Internal Server Error'}))
