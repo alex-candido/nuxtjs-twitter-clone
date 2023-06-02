@@ -1,8 +1,8 @@
 import formidable, { Fields, Files } from "formidable";
-// import { tweetTransformer } from "~~/server/transformers/tweet.js"
+import { tweetTransformer } from "~~/server/transformers/tweet.js";
+import { createMediaFile } from "../../../db/mediaFiles.js";
 import { createTweet } from "../../../db/tweets.js";
-// import { createMediaFile } from "../../../db/mediaFiles.js"
-// import { uploadToCloudinary } from "../../../utils/cloudinary.js"
+import { uploadToCloudinary } from "../../../utils/cloudinary.js";
 
 interface formidableProps {
   fields: any;
@@ -32,9 +32,22 @@ export default defineEventHandler(async (event) => {
 
   const tweet = await createTweet(tweetData)
 
+  const filePromises = Object.keys(files).map(async (key) => {
+    const file = files[key]
+
+    const cloudinaryResource = await uploadToCloudinary()
+
+    return createMediaFile({
+      url: "",
+      providerPublicId: "random_id",
+      userId: userId,
+      tweetId: tweet.id
+    })
+  })
+
   try {
     return {
-      hello: userId
+      tweet: tweetTransformer(tweet)
     }
   } catch (error) {
     return sendError(event, createError({ statusCode: 500, statusMessage: 'Internal Server Error'}))
