@@ -1,7 +1,6 @@
 import cloudinary from "cloudinary"
 
-
-const currentCloudinary = () => {
+const useCloudinary = () => {
   const config = useRuntimeConfig()
 
   return cloudinary.v2.config({
@@ -14,7 +13,7 @@ const currentCloudinary = () => {
 export const uploadToCloudinary = (image: any) => {
   return new Promise ((resolve, reject) => {
     console.log(image)
-    currentCloudinary().v2.uploader.upload(image, (error: any, data: any) => {
+    useCloudinary().v2.uploader.upload(image, (error: any, data: any) => {
       if (error) {
         reject(error)
       }

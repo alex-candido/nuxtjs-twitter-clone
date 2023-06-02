@@ -1,5 +1,14 @@
-export const createMediaFile = () => {
-  return {
+import { prisma } from ".";
 
-  }
+interface mediaFileProps {
+  url: string;
+  providerPublicId: string;
+  userId: string;
+  tweetId: string;
+}
+
+export const createMediaFile = (mediaFile: mediaFileProps) => {
+  return prisma.mediaFile.create({
+    data: mediaFile
+  })
 }

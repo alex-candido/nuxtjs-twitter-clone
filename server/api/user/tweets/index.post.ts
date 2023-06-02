@@ -35,15 +35,17 @@ export default defineEventHandler(async (event) => {
   const filePromises = Object.keys(files).map(async (key) => {
     const file = files[key]
 
-    const cloudinaryResource = await uploadToCloudinary()
+    const cloudinaryResource: any = await uploadToCloudinary(file.filepath)
 
     return createMediaFile({
-      url: "",
-      providerPublicId: "random_id",
+      url: cloudinaryResource.secure_url,
+      providerPublicId: cloudinaryResource.public_id,
       userId: userId,
       tweetId: tweet.id
     })
   })
+
+  await Promise.all(filePromises)
 
   try {
     return {
