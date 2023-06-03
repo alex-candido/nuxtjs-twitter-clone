@@ -1,5 +1,15 @@
 <script setup lang="ts">
-const loading = ref(false)
+  const loading = ref(false)
+  const props = defineProps({
+    user: {
+      type: Object,
+      required: true
+    }
+  })
+
+  function handleFormSubmit(data: any) {
+    console.log(data)
+  }
 
 </script>
 
@@ -10,7 +20,7 @@ const loading = ref(false)
     </div>
     <div v-else >
       <TweetItem />
-      <TweetFormInput />
+      <TweetFormInput :user="props.user" @onSubmit="handleFormSubmit"/>
     </div>
   </div>
 </template>

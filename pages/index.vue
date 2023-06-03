@@ -1,7 +1,7 @@
 <script setup lang="ts">
-    const loading = ref(false)
-    const { useAuthUser } = useAuth()
-    const user = useAuthUser()
+  const loading = ref(false)
+  const { useAuthUser } = useAuth()
+  const user: Record<string, any> = useAuthUser()
 
 </script>
 
@@ -9,12 +9,11 @@
     <div>
         <MainSection title="Home" :loading="loading">
           <Head>
-              <Title>Home / Twitter</Title>
-
+            <Title>Home / Twitter</Title>
           </Head>
 
           <div class="border-b">
-            <TweetForm />
+            <TweetForm :user="user"/>
           </div>
 
         </MainSection>
