@@ -10,7 +10,12 @@
         <MainSection title="Home" :loading="loading">
           <Head>
               <Title>Home / Twitter</Title>
+
           </Head>
+
+          <div class="border-b">
+            <TweetForm />
+          </div>
 
         </MainSection>
     </div>
