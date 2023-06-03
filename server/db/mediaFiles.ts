@@ -1,6 +1,6 @@
 import { prisma } from ".";
 
-interface mediaFileProps {
+export interface mediaFileProps {
   url: string;
   providerPublicId: string;
   userId: string;

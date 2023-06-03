@@ -7,6 +7,7 @@ import { decodeAccessToken } from "../utils/jwt.js";
 export default defineEventHandler(async (event) => {
   const endpoints = [
     '/api/auth/user',
+    '/api/user/tweets',
   ]
 
   const getRequest = getRequestURL(event)

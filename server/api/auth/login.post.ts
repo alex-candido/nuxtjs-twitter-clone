@@ -13,7 +13,6 @@ export default defineEventHandler(async (event: H3Event) => {
     return sendError(event, createError({ statusCode: 405, statusMessage: 'Method Not Allowed' }))
   }
 
-
     const body = await readBody(event);
 
     const { username, password } = body;
