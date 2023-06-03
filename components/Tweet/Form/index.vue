@@ -1,5 +1,6 @@
 <script setup lang="ts">
   const loading = ref(false)
+  const { postTweet } = useTweets()
   const props = defineProps({
     user: {
       type: Object,
@@ -7,8 +8,17 @@
     }
   })
 
-  function handleFormSubmit(data: any) {
+  async function handleFormSubmit(data: any) {
     console.log(data)
+    try {
+      const response = await postTweet({
+        text: data.text
+      })
+
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 </script>

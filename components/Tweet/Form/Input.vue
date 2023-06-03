@@ -12,7 +12,7 @@
     }
   })
 
-  function handleFormSubmit(event: Event) {
+  function handleFormSubmit() {
     const newValue = {
         text: text.value,
         mediaFiles: []

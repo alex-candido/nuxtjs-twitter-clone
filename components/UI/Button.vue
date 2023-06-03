@@ -18,7 +18,7 @@ const emits = defineEmits<{
   (e: 'onClick', value: Event): void;
 }>();
 
-const handleClick = (event: Event) => {
+function handleClick(event: Event) {
   emits("onClick", event);
 };
 
