@@ -1,24 +1,28 @@
 <script setup lang="ts">
-  const text = ref('')
+const text = ref('')
 
-  const emits = defineEmits<{
-  (e: 'onSubmit', value: { text: string, mediaFiles: Array<any> }): void;
-  }>();
+const emits = defineEmits<{
+  (e: 'onSubmit', value: { text: string; mediaFiles: Array<any> }): void
+}>()
 
-  const props = defineProps({
-    user: {
-      type: Object,
-      required: true
-    }
-  })
+const props = defineProps({
+  user: {
+    type: Object,
+    required: true,
+  },
+})
 
-  function handleFormSubmit() {
-    const newValue = {
-        text: text.value,
-        mediaFiles: []
-    }
-    emits("onSubmit", newValue);
+function handleFormSubmit() {
+  const newValue = {
+    text: text.value,
+    mediaFiles: [],
   }
+  emits('onSubmit', newValue)
+}
+
+function handleImageClick() {
+  return {}
+}
 
 </script>
 
@@ -26,7 +30,11 @@
   <div>
     <div class="flex items-center flex-shrink-0 p-4 pb-0">
       <div class="flex w-12 items-top">
-        <img :src="props.user?.profileImage" alt="" class="inline-block w-10 h-10 rounded-full" />
+        <img
+          :src="props.user?.profileImage"
+          alt=""
+          class="inline-block w-10 h-10 rounded-full"
+        />
       </div>
 
       <div class="w-full p-2">
@@ -40,29 +48,42 @@
     <!-- File Selector -->
 
     <div class="p-4 pl-16">
-
       <div class="flex w-full text-white"></div>
 
       <div class="ml-auto"></div>
-
     </div>
 
     <!-- Icons -->
 
     <div class="flex p-2 pl-14">
       <div class="flex w-full text-white">
-        <div
-          class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800"
-        ></div>
+        <div class="flex w-full text-white">
+           <div @click="handleImageClick" class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800">
+            <IconsImage />
+          </div>
+
+          <div class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800">
+            <IconsGif />
+          </div>
+
+          <div class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800">
+            <IconsColumn />
+          </div>
+
+          <div class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800">
+            <IconsSmile />
+          </div>
+
+          <div class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800">
+            <IconsCalendar />
+          </div>
+        </div>
       </div>
       <div class="ml-auto">
-        <UIButton size="sm" @onClick="handleFormSubmit" >
-          <span class="font-bold">
-            Tweet
-          </span>
+        <UIButton size="sm" @onClick="handleFormSubmit">
+          <span class="font-bold"> Tweet </span>
         </UIButton>
       </div>
     </div>
-
   </div>
 </template>
