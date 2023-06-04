@@ -13,6 +13,10 @@ const useTweets = () => {
 
       form.append('text', formData.text)
 
+      formData.mediaFiles.forEach((mediaFile, index) => {
+        form.append('media_file_' + index, mediaFile)
+      })
+
       try {
         const request = await useFetch('/api/user/tweets', {
           method: 'POST',

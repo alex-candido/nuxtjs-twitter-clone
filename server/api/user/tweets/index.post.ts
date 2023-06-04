@@ -59,7 +59,7 @@ export default defineEventHandler(async (event) => {
 
   const form = formidable({})
 
-  const response:FormidableProps = await new Promise((resolve, reject) => {
+  const response: FormidableProps = await new Promise((resolve, reject) => {
     form.parse(event.node.req, (err, fields: Fields, files: Files) => {
       if (err) {
         reject(err)

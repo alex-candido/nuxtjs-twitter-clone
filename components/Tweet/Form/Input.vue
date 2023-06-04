@@ -1,7 +1,8 @@
 <script setup lang="ts">
+const { twitterBorderColor } = useTailwindConfig()
 
 const imageInput = ref()
-const selectedFile = ref()
+const selectedFile = ref(<Blob | null>null)
 const inputImageUrl = ref(<string | ArrayBuffer | null | undefined>null)
 const text = ref('')
 
@@ -14,12 +15,16 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  placeholder: {
+    type: String,
+    required: true,
+  },
 })
 
 function handleFormSubmit() {
   const newValue = {
     text: text.value,
-    mediaFiles: [],
+    mediaFiles: [selectedFile.value],
   }
   emits('onSubmit', newValue)
 }
@@ -42,7 +47,6 @@ function handleImageChange(event: Event) {
 
   reader.readAsDataURL(files)
 }
-
 </script>
 
 <template>
@@ -60,6 +64,7 @@ function handleImageChange(event: Event) {
         <textarea
           v-model="text"
           class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:tex.white focus:ring-0"
+          :placeholder="props.placeholder"
         ></textarea>
       </div>
     </div>
@@ -67,9 +72,21 @@ function handleImageChange(event: Event) {
     <!-- File Selector -->
 
     <div class="p-4 pl-16">
-      <img alt="" class="border rounded-2xl" >
+      <img
+        :src="(inputImageUrl as string | undefined)"
+        v-if="inputImageUrl"
+        alt=""
+        class="border rounded-2xl"
+        :class="twitterBorderColor"
+      />
 
-      <input type="file" ref="imageInput" hidden accept="image/png, image/gif, image/jpeg" @change="handleImageChange">
+      <input
+        type="file"
+        ref="imageInput"
+        hidden
+        accept="image/png, image/gif, image/jpeg"
+        @change="handleImageChange"
+      />
     </div>
 
     <!-- Icons -->
@@ -90,15 +107,21 @@ function handleImageChange(event: Event) {
             <IconsGif />
           </div>
 
-          <div class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800">
+          <div
+            class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800"
+          >
             <IconsColumn />
           </div>
 
-          <div class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800">
+          <div
+            class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800"
+          >
             <IconsSmile />
           </div>
 
-          <div class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800">
+          <div
+            class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800"
+          >
             <IconsCalendar />
           </div>
         </div>

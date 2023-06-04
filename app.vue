@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  let darkMode = ref(false);
+  let darkMode = ref(true);
   const { useAuthUser, initAuth, useAuthLoading } = useAuth()
   const isAuthLoading = useAuthLoading();
   const user = useAuthUser()
@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <div :class="{ dark: darkMode }">
+  <div :class="{ 'dark': darkMode }">
     <div class="bg-white dark:bg-dim-900">
 
       <LoadingPage v-if="isAuthLoading" />
