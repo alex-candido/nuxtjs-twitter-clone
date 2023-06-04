@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 
-interface userProps {
+export interface userProps {
   id: string;
   name: string | null;
   email: string;
@@ -125,6 +125,7 @@ const useAuth = () => {
     useAuthToken,
     initAuth,
     useAuthLoading,
+    refreshToken
   }
 }
 

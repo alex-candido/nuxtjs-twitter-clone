@@ -22,7 +22,7 @@
     (e: 'update:modelValue', value: string): void;
   }>();
 
-  const handleInput = (event: Event) => {
+  function handleInput(event: Event) {
     const newValue = (event.target as HTMLInputElement).value;
     emits('update:modelValue', newValue);
   };
