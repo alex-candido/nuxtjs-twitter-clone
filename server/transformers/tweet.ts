@@ -1,10 +1,10 @@
 interface tweetDataProps {
   id: string;
   text: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   authorId: string;
-  replyToId: boolean | null;
+  replyToId: string | null;
 }
 
 export const tweetTransformer = (tweet: tweetDataProps) => {
