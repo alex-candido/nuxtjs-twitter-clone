@@ -96,7 +96,7 @@ export default defineEventHandler(async (event) => {
     await Promise.all(filePromises)
 
     return {
-      tweet: tweetTransformer(tweet)
+      tweet: tweetTransformer(tweet),
     }
   } catch (error) {
     return sendError(event, createError({ statusCode: 500, statusMessage: 'Internal Server Error' }))

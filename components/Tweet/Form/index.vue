@@ -1,6 +1,6 @@
 <script setup lang="ts">
   const loading = ref(false)
-  const { postTweet } = useTweets()
+  const { postTweet, usePostTweet } = useTweets()
   const props = defineProps({
     user: {
       type: Object,
@@ -8,14 +8,17 @@
     }
   })
 
-  async function handleFormSubmit(data: any) {
+  const currentPostTweet = usePostTweet();
+
+  async function handleFormSubmit(data: { text: string, mediaFiles: Array<any> }) {
     console.log(data)
     try {
       const response = await postTweet({
-        text: data.text
+        text: data.text,
+        mediaFiles: data.mediaFiles,
       })
 
-      console.log(response)
+      console.log(currentPostTweet.value)
     } catch (error) {
       console.log(error)
     }

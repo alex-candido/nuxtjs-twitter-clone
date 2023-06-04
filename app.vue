@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  let darkMode = ref(true);
+  let darkMode = ref(false);
   const { useAuthUser, initAuth, useAuthLoading } = useAuth()
   const isAuthLoading = useAuthLoading();
   const user = useAuthUser()

@@ -1,5 +1,13 @@
 const useTweets = () => {
-  const postTweet = (formData: any) => {
+
+  const usePostTweet = () => useState<{ id: string, text: string }>('post_tweet')
+
+  const setPost = ( newPost: any) => {
+    const postTweet = usePostTweet()
+    postTweet.value = newPost;
+  }
+
+  const postTweet = (formData: { text: string, mediaFiles: Array<any> }) => {
     return new Promise(async (resolve, reject) => {
       const form = new FormData()
 
@@ -11,8 +19,8 @@ const useTweets = () => {
           body: form
         })
 
+        setPost(request.data.value?.tweet)
         resolve(true)
-        return request
       } catch (error) {
         console.log(error)
         reject(error)
@@ -21,7 +29,8 @@ const useTweets = () => {
   }
 
   return {
-    postTweet
+    postTweet,
+    usePostTweet
   }
 }
 
