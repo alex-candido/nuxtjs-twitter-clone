@@ -10,6 +10,8 @@ const emits = defineEmits<{
   (e: 'onSubmit', value: { text: string; mediaFiles: Array<any> }): void
 }>()
 
+const isDisabled = computed(() => text.value === '')
+
 const props = defineProps({
   user: {
     type: Object,
@@ -128,7 +130,7 @@ function handleImageChange(event: Event) {
       </div>
 
       <div class="ml-auto">
-        <UIButton size="sm" @onClick="handleFormSubmit">
+        <UIButton size="sm" @onClick="handleFormSubmit" :disabled="isDisabled">
           <span class="font-bold"> Tweet </span>
         </UIButton>
       </div>

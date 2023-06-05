@@ -6,54 +6,53 @@ const props = defineProps({
   },
   size: {
     type: String,
-    default: "md",
+    default: 'md',
   },
   liquid: {
     type: Boolean,
     default: false,
   },
-});
+})
 
 const emits = defineEmits<{
-  (e: 'onClick', value: Event): void;
-}>();
+  (e: 'onClick', value: Event): void
+}>()
 
 function handleClick(event: Event) {
-  emits("onClick", event);
-};
+  emits('onClick', event)
+}
 
 const paddingClasses = computed(() => {
   switch (props.size) {
-    case "sm":
-      return "py-2 px-3";
-    case "lg":
-      return "px-4 py-3";
+    case 'sm':
+      return 'py-2 px-3'
+    case 'lg':
+      return 'px-4 py-3'
     default:
-      return "px-3 py-3";
+      return 'px-3 py-3'
   }
-});
+})
 
 const textFontSize = computed(() => {
   switch (props.size) {
-    case "lg":
-      return "text-md";
+    case 'lg':
+      return 'text-md'
     default:
-      return "text-sm";
+      return 'text-sm'
   }
-});
+})
 
 const defaultWidth = computed(() => {
   switch (props.size) {
     default:
-      return "w-min";
+      return 'w-min'
   }
-});
+})
 
 const classes = computed(
   () =>
-    `${paddingClasses.value} ${props.liquid ? "w-full" : defaultWidth.value}`,
-);
-
+    `${paddingClasses.value} ${props.liquid ? 'w-full' : defaultWidth.value}`
+)
 </script>
 
 <template>
