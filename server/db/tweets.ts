@@ -3,6 +3,7 @@ import { prisma } from ".";
 interface tweetDataProps {
   text: any;
   authorId: any;
+  // replyToId: any;
 }
 export const createTweet = (tweetData: tweetDataProps) => {
   return prisma.tweet.create({

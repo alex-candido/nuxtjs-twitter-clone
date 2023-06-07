@@ -7,6 +7,7 @@ import { uploadToCloudinary } from "../../../utils/cloudinary.js";
 
 interface FieldsProps {
   text: string;
+  replyTo: any;
 }
 
 interface ImageProps {
@@ -74,8 +75,15 @@ export default defineEventHandler(async (event) => {
 
   const tweetData = {
     text: fields.text,
-    authorId: userId
+    authorId: userId,
+    // replyToId: {}
   }
+
+  // const replyTo = fields.replyTo
+
+  // if (replyTo && replyTo !== 'null' && replyTo !== 'undefined') {
+  //     tweetData.replyToId = replyTo
+  // }
 
   const tweet = await createTweet(tweetData)
 

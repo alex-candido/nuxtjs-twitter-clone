@@ -31,6 +31,7 @@ async function handleFormSubmit(data: {
     const response = await postTweet({
       text: data.text,
       mediaFiles: data.mediaFiles,
+      replyTo: props.replyTo?.id
     })
 
     console.log(currentPostTweet.value)
