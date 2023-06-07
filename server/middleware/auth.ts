@@ -8,6 +8,7 @@ export default defineEventHandler(async (event) => {
   const endpoints = [
     '/api/auth/user',
     '/api/user/tweets',
+    "/api/tweets",
   ]
 
   const getRequest = getRequestURL(event)

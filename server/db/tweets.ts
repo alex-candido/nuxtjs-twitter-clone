@@ -10,7 +10,7 @@ export const createTweet = (tweetData: tweetDataProps) => {
   })
 }
 
-export const getTweets = (params: {}) => {
+export const getTweets = (params: any) => {
   return prisma.tweet.findMany({
     ...params
   })
