@@ -32,8 +32,25 @@ const useTweets = () => {
     })
   }
 
+  const getTweet = (params = {}) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const request = await useFetch('/api/tweets', {
+          method: 'GET',
+          body: params
+        })
+
+        resolve(request)
+      } catch (error) {
+        console.log(error)
+        reject(error)
+      }
+    })
+  }
+
   return {
     postTweet,
+    getTweet,
     usePostTweet,
   }
 }
