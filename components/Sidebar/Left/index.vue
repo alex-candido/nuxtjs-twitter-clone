@@ -1,8 +1,30 @@
 <script setup lang="ts">
-import { BellIcon, BookmarkIcon, DocumentTextIcon, EllipsisHorizontalCircleIcon, HashtagIcon, InboxIcon, UserIcon } from "@heroicons/vue/24/outline";
-import { HomeIcon } from "@heroicons/vue/24/solid";
-const { defaultTransition } = useTailwindConfig();
+import {
+BellIcon,
+BookmarkIcon,
+ChevronDownIcon,
+DocumentTextIcon,
+EllipsisHorizontalCircleIcon,
+HashtagIcon,
+InboxIcon,
+PencilIcon,
+UserIcon,
+} from '@heroicons/vue/24/outline';
+import { HomeIcon } from '@heroicons/vue/24/solid';
 
+const { defaultTransition } = useTailwindConfig()
+
+const emits = defineEmits<{
+  (e: 'onTweet'): void
+  (e: 'onLogout'): void
+}>()
+
+const props = defineProps({
+  user: {
+    type: Object,
+    required: true,
+  },
+})
 </script>
 
 <template>
@@ -77,6 +99,45 @@ const { defaultTransition } = useTailwindConfig();
         </template>
         <template v-slot:name> More </template>
       </SidebarLeftTab>
+
+      <div class="hidden xl:block">
+        <UIButton liquid size="lg" @on-click="emits('onTweet')">
+          <span class="font-bold"> Tweet </span>
+        </UIButton>
+      </div>
+
+      <div class="block xl:hidden">
+        <UIButton @on-click="emits('onTweet')">
+          <div class="w-6 h-6 font-bold">
+            <PencilIcon />
+          </div>
+        </UIButton>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800"
+      :class="defaultTransition"
+      @click="emits('onLogout')"
+    >
+      <div class="flex flex-row">
+        <img class="w-10 h-10 rounded-full" />
+        <div class="flex-col hidden ml-2 xl:block">
+          <h1 class="text-sm font-bold text-gray-800 dark:text-white">
+
+          </h1>
+          <p class="text-sm text-gray-400">
+
+          </p>
+        </div>
+      </div>
+
+      <!-- ICON -->
+      <div class="hidden ml-auto xl:block">
+        <div class="w-6 h-6">
+          <ChevronDownIcon />
+        </div>
+      </div>
     </div>
   </div>
 </template>

@@ -1,13 +1,6 @@
 import bcrypt from "bcrypt";
+import { userDataProps } from "~/@types/db";
 import { prisma } from ".";
-
-interface userDataProps {
-    username: string;
-    email: string;
-    password: string;
-    name: string;
-    profileImage: string;
-}
 
 export const createUser = (userData: userDataProps) => {
 
