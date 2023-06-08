@@ -1,13 +1,5 @@
-interface userTransformerProps {
-  id: string;
-  email: string;
-  name: string | null;
-  username: string;
-  password: string;
-  profileImage: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { userTransformerProps } from "~/@types/transformers"
+
 
 export const userTransformer = (user: userTransformerProps) => {
   return {

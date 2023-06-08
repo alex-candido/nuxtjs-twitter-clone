@@ -1,11 +1,5 @@
+import { mediaFileProps } from "~/@types/db";
 import { prisma } from ".";
-
-export interface mediaFileProps {
-  url: string;
-  providerPublicId: string;
-  userId: string;
-  tweetId: string;
-}
 
 export const createMediaFile = (mediaFile: mediaFileProps) => {
   return prisma.mediaFile.create({

@@ -28,7 +28,7 @@ async function handleFormSubmit(data: {
 }) {
   loading.value = true
   try {
-    const response = await postTweet({
+    await postTweet({
       text: data.text,
       mediaFiles: data.mediaFiles,
       replyTo: props.replyTo?.id

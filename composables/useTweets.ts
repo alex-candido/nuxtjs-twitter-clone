@@ -1,9 +1,17 @@
+import { tweetDataProps } from "~/@types/transformers"
+
 const useTweets = () => {
   const usePostTweet = () => useState<{ id: string, text: string }>('post_tweet')
+  const getPostTweets = () => useState<tweetDataProps[] | undefined >('get_tweets')
 
   const setPost = ( newPost: any) => {
     const postTweet = usePostTweet()
     postTweet.value = newPost;
+  }
+
+  const setPostTweets = ( tweets: tweetDataProps[] | undefined) => {
+    const currentTweets = getPostTweets()
+    currentTweets.value = tweets;
   }
 
   const postTweet = (formData: { text: string, mediaFiles: Array<any>, replyTo: any }) => {
@@ -18,9 +26,11 @@ const useTweets = () => {
       })
 
       try {
-        const request = await useFetch('/api/user/tweets', {
+        const request: any = await useFetch('/api/user/tweets', {
           method: 'POST',
-          body: form
+          body: {
+            form
+          }
         })
 
         setPost(request.data.value?.tweet)
@@ -32,14 +42,15 @@ const useTweets = () => {
     })
   }
 
-  const getTweet = (params = {}) => {
+  const getTweets = (params = {}) => {
     return new Promise(async (resolve, reject) => {
       try {
         const request = await useFetch('/api/tweets', {
           method: 'GET',
-          body: params
+          query: params
         })
 
+        setPostTweets(request.data.value?.tweets)
         resolve(request)
       } catch (error) {
         console.log(error)
@@ -50,8 +61,9 @@ const useTweets = () => {
 
   return {
     postTweet,
-    getTweet,
+    getTweets,
     usePostTweet,
+    getPostTweets
   }
 }
 

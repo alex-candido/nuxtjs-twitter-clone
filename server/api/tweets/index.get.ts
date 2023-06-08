@@ -1,5 +1,5 @@
 import { getTweets } from "~~/server/db/tweets";
-// import { tweetTransformer } from "~~/server/transformers/tweet";
+import { tweetTransformer } from "~~/server/transformers/tweet";
 
 export default defineEventHandler(async (event) => {
   const { query } = getQuery(event)
@@ -24,6 +24,6 @@ export default defineEventHandler(async (event) => {
   const tweets = await getTweets(prismaQuery)
 
   return {
-    tweets: tweets
+    tweets: tweets.map(tweetTransformer)
   }
 })

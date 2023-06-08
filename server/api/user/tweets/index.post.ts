@@ -87,6 +87,10 @@ export default defineEventHandler(async (event) => {
 
   const tweet = await createTweet(tweetData)
 
+  if (!tweet) {
+    return sendError(event, createError({ statusCode: 500, statusMessage: 'Internal Server Error' }))
+  }
+
   try {
     const filePromises = Object.keys(files).map(async (index) => {
       const filter = files[index as keyof typeof files] as ImageProps
@@ -103,8 +107,10 @@ export default defineEventHandler(async (event) => {
 
     await Promise.all(filePromises)
 
+    const currentTweet = tweetTransformer(tweet)
+
     return {
-      tweet: tweetTransformer(tweet),
+      tweet: currentTweet,
     }
   } catch (error) {
     return sendError(event, createError({ statusCode: 500, statusMessage: 'Internal Server Error' }))
